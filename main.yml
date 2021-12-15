@@ -1,0 +1,16 @@
+---
+- name: server Healthcheck
+  hosts: all
+  connection: local
+  become: yes
+  gather_facts: yes
+  become_method: sudo
+
+  vars_files:
+    - /root/usecases/Playbooks/credentials.txt
+  roles:
+    - linux_availability_report
+
+  environment:
+    - AWS_ACCESS_KEY: "{{ aws_access_key }}"
+    - AWS_SECRET_ACCESS_KEY: "{{ aws_secret_key }}"
